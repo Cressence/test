@@ -1,10 +1,6 @@
 import styled from 'styled-components/native';
 import Text from '../../widget/text';
 
-export const TextView = styled(Text)`
-
-`;
-
 export const Title = styled(Text)`
     fontSize: 40px;
     color: ${props => props.theme.colors.powderWhite};
