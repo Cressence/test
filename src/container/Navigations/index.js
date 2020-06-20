@@ -12,7 +12,7 @@ const Navigation = (user) => {
   return (
     <Stack.Navigator>
       {isEmpty(user)  ? (
-        <Stack.Screen name="LogIn" component={LoginScreen} />
+        <Stack.Screen name="LogIn" component={LoginScreen} options={{headerShown: false}} />
       ) : (
         <Stack.Screen name="Home" component={HomeScreen} />
       )}
