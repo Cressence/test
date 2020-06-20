@@ -1,4 +1,5 @@
 import React from 'react';
+import PhoneInput from 'react-native-phone-input';
 
 import Theme from '../../../utils/theme';
 import LogoImg from '../../../assets/images/logo.png';
@@ -6,7 +7,6 @@ import FBImg from '../../../assets/images/facebook-square.png';
 import GoogleImg from '../../../assets/images/google.png';
 
 import {
-  TextView,
   LoginContainer,
   LoginContent,
   ButtonContainer,
@@ -15,7 +15,7 @@ import {
   Title,
   Greetings,
   Instructions,
-  CountryDropdown,
+  NumberInput,
   SigninText,
   FBLogo,
   FBText,
@@ -23,6 +23,11 @@ import {
   GoogleBtn,
   GoogleLogo,
   GoogleText,
+  GoogleTextContainer,
+  PhoneContainer,
+  GoBtn,
+  GoBtnText,
+  NumberContainer,
 } from './styles';
 
 const login = props => {
@@ -36,7 +41,27 @@ const login = props => {
           </LogoContainer>
           <Greetings>Hey there!</Greetings>
           <Instructions>Type in your phone number to get started</Instructions>
-          <CountryDropdown />
+          <PhoneContainer>
+            <NumberContainer>
+              <PhoneInput
+                initialCountry="ng"
+                ref={props.phone}
+                autoFormat={true}
+                onSelectCountry={text => props.getCode(text)}
+              />
+              <NumberInput
+                placeholder="080 123 4567"
+                keyboardType="number-pad"
+                defaultValue={props.number}
+                onChangeText={number =>
+                  props.setNumber(number.replace(/[^0-9]/g, ''))
+                }
+              />
+            </NumberContainer>
+            <GoBtn>
+              <GoBtnText>GO</GoBtnText>
+            </GoBtn>
+          </PhoneContainer>
           <SigninText>or you can sign in with</SigninText>
         </LoginContent>
         <ButtonContainer>
@@ -46,7 +71,9 @@ const login = props => {
           </FacebookBtn>
           <GoogleBtn>
             <GoogleLogo source={GoogleImg} />
-            <GoogleText>Google</GoogleText>
+            <GoogleTextContainer>
+              <GoogleText>Google</GoogleText>
+            </GoogleTextContainer>
           </GoogleBtn>
         </ButtonContainer>
       </LoginContainer>
